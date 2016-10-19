@@ -160,7 +160,7 @@ module WebsocketRails
     end
 
     def remove_server(token)
-      @active_servers.delete token
+      ruby_redis.srem "websocket_rails.active_servers", token
       info "Server Removed: #{token}"
       EM.stop
     end
